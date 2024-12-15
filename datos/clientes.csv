@@ -1,0 +1,15 @@
+Cliente_ID,Nombre,Tipo_Cliente,Ubicacion,Telefono
+1,Cliente 0,Repostero,Rubio,333 3333 331
+2,Cliente 1,Repostero,Rubio,333 3333 332
+3,Cliente 2,Repostero,Rubio,333 3333 333
+4,Cliente 3,Repostero,Rubio,333 3333 334
+5,Cliente 4,Repostero,Rubio,333 3333 335
+6,Cliente 5,Empresa no repostera,Rubio,333 3333 336
+7,Cliente 6,Repostero,Rubio,333 3333 337
+8,Cliente 7,Empresa no repostera,Rubio,333 3333 338
+9,Cliente 8,Empresa no repostera,San Cristobal,333 3333 339
+10,Cliente 9,Empresa no repostera,Rubio,333 3333 3310
+11,Cliente 10,Repostero,San Antonio,333 3333 3311
+12,Cliente 11,Repostero,San Antonio,333 3333 3312
+13,Cliente 12,Repostero,Otro,333 3333 3313
+14,Cliente 13,Empresa no repostera,Otro,333 3333 3314
