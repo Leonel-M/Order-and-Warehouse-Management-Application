@@ -61,7 +61,7 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
             """)
 
     # Visualización de la semana
-    proximas_ordenes = ordenes[(ordenes['Fecha_Entrega'] > hoy) & (ordenes['Estado'] == 'Pendiente')]
+    proximas_ordenes = ordenes[ordenes['Estado'] == 'Pendiente']
     st.write('Próximas Órdenes (Orden Cronológico):')
     if not proximas_ordenes.empty:
         proximas_ordenes = proximas_ordenes.sort_values(by='Fecha_Entrega', ascending=True)
