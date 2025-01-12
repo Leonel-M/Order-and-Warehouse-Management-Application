@@ -2,35 +2,21 @@
 import streamlit as st
 import pandas as pd
 import os
+import time
 
-
-
-def nuevo_tab():
-        # Leer el archivo CSV si existe, de lo contrario crear un DataFrame vacío
+def nuevo_cliente():
     ruta_clientes = os.path.join('datos', 'clientes.csv')
     if os.path.exists(ruta_clientes):
         cliente_df = pd.read_csv(ruta_clientes)
     else:
         cliente_df = pd.DataFrame(columns=['Cliente_ID', 'Nombre', 'Tipo_Cliente', 'Ubicacion'])
 
-    ruta_productos = os.path.join('datos', 'productos.csv')
-    if os.path.exists(ruta_productos):
-        producto_df = pd.read_csv(ruta_productos)
-    else:
-        producto_df = pd.DataFrame(columns=['Producto_ID','Producto'])
-    
-    ruta_materiales =os.path.join('datos','material.csv')
-    if os.path.exists(ruta_materiales):
-        material_df = pd.read_csv(ruta_materiales)
-    else: 
-        material_df = pd.DataFrame(columns=['SKU','Material','Categoria'])
-
     with st.form('nuevo_cliente'):
         st.title('Nuevo Cliente')
         nombre = st.text_input('Nombre del cliente', placeholder='Ej. Rey de las tortas')
         tipo_cliente = st.selectbox('Tipo de Cliente', ['---','Repostero','Personal','Empresa no repostera'])
         ubicacion = st.selectbox('Ubicación', ['---','Rubio','San Antonio','San Cristobal', 'Otro'])
-        telefono = st.text_input('Numero de telefono', placeholder='Ej. +58 0424-3779850')
+        telefono = st.text_input('Informacion de contacto', placeholder='Ej. +58 0424-3779850')
 
         if st.form_submit_button('Registrar nuevo cliente'):
             if nombre.strip() == '':
@@ -66,6 +52,12 @@ def nuevo_tab():
                 Tipo Cliente: {tipo_cliente}\n
                 Ubicacion: {ubicacion}\n
                 Telefono: {telefono}""")
+def nuevo_producto():    
+    ruta_productos = os.path.join('datos', 'productos.csv')
+    if os.path.exists(ruta_productos):
+        producto_df = pd.read_csv(ruta_productos)
+    else:
+        producto_df = pd.DataFrame(columns=['Producto_ID','Producto'])
     
     with st.form('nuevo_producto'):
         st.title('Nuevo Producto')
@@ -92,6 +84,12 @@ def nuevo_tab():
                 Producto ID: {producto_id}\n
                 Producto: {producto}
                          """)
+def nuevo_material():
+    ruta_materiales =os.path.join('datos','material.csv')
+    if os.path.exists(ruta_materiales):
+        material_df = pd.read_csv(ruta_materiales)
+    else: 
+        material_df = pd.DataFrame(columns=['SKU','Material','Categoria'])            
     
     with st.form('nuevo_material'):
         st.title('Nuevo Material')
@@ -121,3 +119,27 @@ def nuevo_tab():
                 Material: {material}\
                 Categoria: {categoria}
                          """)
+
+def nuevo_tab():
+    if 'tipo_datos' not in st.session_state:
+        st.session_state['tipo_datos'] = ''
+        st.session_state['formulario_llamado'] = False
+    with st.form('menu_nuevo'):    
+        tipo_datos = st.selectbox('Nuevo Ingreso al sistema', ['---','Nuevo Cliente','Nuevo Producto','Nuevo material'],key='tipo_dato_menu')
+        submit = st.form_submit_button('Seleccionar Nuevo Ingreso')    
+        if submit:
+            st.session_state['tipo_datos'] = tipo_datos
+            st.session_state['formulario_llamado'] = False  # Reiniciar el formulario al cambiar opción
+    if not st.session_state['formulario_llamado']:
+        match st.session_state['tipo_datos']:
+            case '---':
+                st.error('Seleccione nuevo ingreso')
+            case 'Nuevo Cliente':
+                nuevo_cliente()
+            case 'Nuevo Producto':
+                nuevo_producto()
+            case 'Nuevo material':
+                nuevo_material()
+
+
+

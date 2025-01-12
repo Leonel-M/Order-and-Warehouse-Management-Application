@@ -14,7 +14,7 @@ def documentos():
     archivos = {
         'clientes.csv': ['Cliente_ID', 'Nombre', 'Tipo_Cliente', 'Ubicacion','Telefono'],
         'productos.csv':['Producto_ID','Producto'],
-        'ordenes.csv': ['Orden_ID','Cliente','Tipo_Cliente','Prioridad','Tipo_Pago','Fecha_Registro','Fecha_Entrega','Hora_Entrega','Nota_Orden','Ubicacion','Estado'],
+        'ordenes.csv': ['Orden_ID','Cliente','Tipo_Cliente','Fecha_Registro','Fecha_Entrega','Hora_Entrega','Nota_Orden','Ubicacion','Estado'],
         'detalles_ordenes.csv': ['Orden_ID','Producto_ID','Cantidad'],
         'material.csv':['SKU','Material','Categoria'],
         'almacen.csv': [
@@ -99,8 +99,8 @@ def registrar_producto(producto_cantidad):
     productos_df.to_csv(ruta_archivo, index=False)
     return producto_id
 
-def registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,prioridad,
-                    tipo_pago,fecha_registro,fecha_entrega,hora_entrega,nota_orden,ubicacion,estado):
+def registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,
+                    fecha_registro,fecha_entrega,hora_entrega,nota_orden,ubicacion,estado):
 
     #Ruta del archivo
     ruta_ordenes = os.path.join('datos','ordenes.csv')
@@ -112,8 +112,6 @@ def registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,prioridad
             'Orden_ID',
             'Cliente',
             'Tipo_Cliente',
-            'Prioridad',
-            'Tipo_Pago',
             'Fecha_Registro',
             'Fecha_Entrega',
             'Hora_Entrega'
@@ -143,8 +141,6 @@ def registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,prioridad
         'Orden_ID': orden_id,
         'Cliente':cliente,
         'Tipo_Cliente':tipo_cliente,
-        'Prioridad': prioridad,
-        'Tipo_Pago':tipo_pago,
         'Fecha_Registro':fecha_registro_dt,
         'Fecha_Entrega':fecha_entrega_dt,
         'Hora_Entrega':hora_entrega,
@@ -181,11 +177,11 @@ def registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,prioridad
     return
 
 def registrar_datos(cliente,tipo_cliente,producto_cantidad,
-                    prioridad,tipo_pago,fecha_registro,fecha_entrega,hora_entrega,nota_orden,ubicacion,estado):
+                    fecha_registro,fecha_entrega,hora_entrega,nota_orden,ubicacion,estado):
 
     cliente_id = registrar_cliente(cliente)
     producto_id = registrar_producto(producto_cantidad)
-    registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,prioridad,tipo_pago,fecha_registro,fecha_entrega,hora_entrega,nota_orden,ubicacion,estado)
+    registrar_orden(cliente,tipo_cliente,producto_id,producto_cantidad,fecha_registro,fecha_entrega,hora_entrega,nota_orden,ubicacion,estado)
 
     return #print(f'cliente ID {cliente_id} y producto ID {producto_id}')
 

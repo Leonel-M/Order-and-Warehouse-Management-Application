@@ -1,16 +1,22 @@
-Orden_ID,Cliente,Tipo_Cliente,Prioridad,Tipo_Pago,Fecha_Registro,Fecha_Entrega,Hora_Entrega,Nota_Orden,Ubicacion,Estado
-1,Cliente 11,Repostero,Media,Pesos,2024-12-10,2024-12-14,13:00:00,Lorem Ipsum,San Antonio,Pendiente
-2,Cliente 11,Repostero,Media,Pesos,2024-12-10,2024-12-16,13:00:00,Lorem Ipsum,San Antonio,Pendiente
-3,Cliente 5,Empresa no repostera,Alta,Pesos,2024-12-10,2024-12-17,13:00:00,Lorem Ipsum,Rubio,Pendiente
-4,Cliente 8,Empresa no repostera,Alta,Pesos,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,San Cristobal,Pendiente
-5,Cliente 9,Empresa no repostera,Alta,Pesos,2024-12-10,2024-12-11,13:00:00,Lorem Ipsum,Rubio,Completado
-6,Cliente 7,Empresa no repostera,Alta,Pesos,2024-12-10,2024-12-30,15:00:00,Lorem Ipsum,Rubio,Completado
-7,Cliente 3,Repostero,Alta,Pesos,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Pendiente
-8,Cliente 6,Repostero,Alta,Pesos,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Pendiente
-9,Cliente 10,Repostero,Alta,Pesos,2024-12-10,2024-12-14,13:00:00,Lorem Ipsum,San Antonio,Pendiente
-10,Cliente 2,Repostero,Alta,Pesos,2024-12-10,2024-12-11,13:00:00,Lorem Ipsum,Rubio,Completado
-11,Cliente 13,Empresa no repostera,Alta,Pesos,2024-12-10,2024-12-15,13:00:00,Lorem Ipsum,Otro,Pendiente
-12,Cliente 4,Repostero,Alta,Pesos,2024-12-10,2024-12-15,13:00:00,Lorem Ipsum,Rubio,Pendiente
-13,Cliente 0,Repostero,Alta,Pesos,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Pendiente
-14,Cliente 1,Repostero,Alta,Pesos,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Pendiente
-15,Cliente 12,Repostero,Alta,Pesos,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Otro,Pendiente
+Orden_ID,Cliente,Tipo_Cliente,Fecha_Registro,Fecha_Entrega,Hora_Entrega,Nota_Orden,Ubicacion,Estado
+1,Cliente 11,Repostero,2024-12-10,2024-12-14,13:00:00,Lorem Ipsum,San Antonio,Completado
+2,Cliente 11,Repostero,2024-12-10,2024-12-16,17:00:00,Lorem Ipsum,San Antonio,No entregado
+3,Cliente 5,Empresa no repostera,2024-12-10,2024-12-17,13:00:00,Lorem Ipsum,Rubio,Pendiente
+4,Cliente 8,Empresa no repostera,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,San Cristobal,Incompleto
+5,Cliente 9,Empresa no repostera,2024-12-10,2024-12-11,13:00:00,Lorem Ipsum,Rubio,Completado
+6,Cliente 7,Empresa no repostera,2024-12-10,2024-12-30,15:00:00,Lorem Ipsum,Rubio,Completado
+7,Cliente 3,Repostero,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Pendiente
+8,Cliente 6,Repostero,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Completado
+9,Cliente 10,Repostero,2024-12-10,2024-12-14,13:00:00,Lorem Ipsum,San Antonio,Pendiente
+10,Cliente 2,Repostero,2024-12-10,2024-12-11,13:00:00,Lorem Ipsum,Rubio,Completado
+11,Cliente 13,Empresa no repostera,2024-12-10,2024-12-15,13:00:00,Lorem Ipsum,Otro,Pendiente
+12,Cliente 4,Repostero,2024-12-10,2024-12-15,15:00:00,Lorem Ipsum,Rubio,Completado
+13,Cliente 0,Repostero,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Completado
+14,Cliente 1,Repostero,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Rubio,Completado
+15,Cliente 12,Repostero,2024-12-10,2024-12-13,13:00:00,Lorem Ipsum,Otro,Completado
+16,Cliente 11,Repostero,2025-01-09,2025-01-11,11:00:00,,San Antonio,Pendiente
+17,Cliente 13,Empresa no repostera,2025-01-09,2025-01-11,09:00:00,,Otro,Pendiente
+18,Cliente 11,Repostero,2025-01-09,2025-01-09,20:00:00,,San Antonio,Pendiente
+19,Cliente 13,Empresa no repostera,2025-01-09,2025-01-09,16:00:00,,Otro,Pendiente
+20,Cliente 11,Repostero,2025-01-09,2025-01-09,19:00:00,,San Antonio,Pendiente
+21,Cliente 0,Repostero,2025-01-09,2025-01-31,18:00:00,,Rubio,Pendiente

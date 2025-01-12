@@ -14,15 +14,25 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
         return
     
     hoy = pd.Timestamp(datetime.now().date())
-    fecha_limite = hoy + pd.Timedelta(days=7)
-    
+
+    #Visualización de las ordenes pendientes
+    ordenes_pendientes = ordenes[(ordenes['Fecha_Entrega'] < hoy) & (ordenes['Estado'] == 'Pendiente')]
+    st.markdown('### Ordenes Pendientes')
+    if ordenes_pendientes.empty:
+        st.info('No hay órdenes pendientes')
+    else:
+        ordenes_pendientes = ordenes_pendientes.sort_values(by=['Fecha_Entrega','Hora_Entrega'], ascending=True)
+        st.dataframe(ordenes_pendientes)
+
+
     # Visualización de las órdenes del día
     ordenes_hoy = ordenes[ordenes['Fecha_Entrega'] == hoy]
     
-    st.write('Órdenes del día:')
+    st.markdown(f'### Ordenes del dia ({hoy.strftime('%Y-%m-%d')})')
     if ordenes_hoy.empty:
         st.info('No hay órdenes para el día de hoy')
     else:
+        
         if 'Orden_ID' in ordenes_hoy.columns and 'Orden_ID' in detalles_ordenes.columns:
             ordenes_hoy = pd.merge(ordenes_hoy, detalles_ordenes, on='Orden_ID', how='left')
         else:
@@ -37,6 +47,7 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
 
         # Verificar columnas necesarias
         required_columns = ['Orden_ID', 'Producto', 'Cantidad']
+        
         for col in required_columns:
             if col not in ordenes_productos.columns:
                 st.error(f"Falta la columna '{col}' en el DataFrame 'ordenes_productos'.")
@@ -44,27 +55,28 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
         ordenes_productos['Producto_Cantidad'] = ordenes_productos.apply(
             lambda row: f"{row['Producto']} (x{row['Cantidad']})", axis=1
             )
-
+        ordenes_productos['Nota_Orden'] = ordenes_productos['Nota_Orden'].fillna("Sin nota")
         fichas = ordenes_productos.groupby(
-            ['Orden_ID', 'Fecha_Entrega', 'Cliente', 'Nota_Orden', 'Estado']
+            ['Orden_ID', 'Fecha_Entrega', 'Cliente', 'Nota_Orden', 'Estado','Hora_Entrega']
         ).agg(
             Productos=('Producto_Cantidad',', '.join)
         ).reset_index()
+        fichas = fichas.sort_values(by='Hora_Entrega')
         for _, fila in fichas.iterrows():
             st.markdown(f"""
-            ### Orden ID: {fila['Orden_ID']}
-            **Fecha de Entrega:** {fila['Fecha_Entrega'].date()}  
+            **Orden ID:** {fila['Orden_ID']}  
+            **Hora de Entrega:** {datetime.strptime(fila['Hora_Entrega'], '%H:%M:%S').strftime('%H:%M')}  
             **Cliente:** {fila['Cliente']}  
-            **Notas:** {fila['Nota_Orden']}  
             **Productos:** {fila['Productos']}  
+            **Notas:** {fila['Nota_Orden']}  
             **Estado:** {fila['Estado']}
             """)
 
     # Visualización de la semana
-    proximas_ordenes = ordenes[ordenes['Estado'] == 'Pendiente']
-    st.write('Próximas Órdenes (Orden Cronológico):')
+    proximas_ordenes = ordenes[(ordenes['Estado'] == 'Pendiente') & (ordenes['Fecha_Entrega'] > hoy)]
+    st.markdown('### Próximas Órdenes')
     if not proximas_ordenes.empty:
-        proximas_ordenes = proximas_ordenes.sort_values(by='Fecha_Entrega', ascending=True)
+        proximas_ordenes = proximas_ordenes.sort_values(by=['Fecha_Entrega','Hora_Entrega'], ascending=True)
         st.dataframe(proximas_ordenes)
     else:
         st.info('No hay órdenes programadas.')
@@ -89,7 +101,7 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
             else:
                 datos_orden = ordenes[ordenes['Orden_ID'] == num_orden].iloc[0].to_dict()
                 st.session_state['orden_info'] = datos_orden
-
+    #Modificar Ordenes
     if st.session_state.get('orden_info') and any(st.session_state['orden_info'].values()):
         with st.form('form_modificar'):
             st.markdown(f"""
@@ -107,32 +119,33 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
             st.write("**Productos asociados:**")
             for producto in productos_list:
                 st.write(f"- {producto}")
-
-            # Fecha de Entrega
-            fecha_entrega = st.session_state['orden_info']['Fecha_Entrega']
-            fecha_entrega = pd.to_datetime(fecha_entrega) if fecha_entrega else hoy
-            fecha_entrega_input = st.date_input(
-                'Fecha de Entrega',
-                value=fecha_entrega,
-                format='DD/MM/YYYY',
-                key='Fecha_Entrega'
-            )
-
-            # Hora de Entrega
-            hora_entrega_str = st.session_state['orden_info']['Hora_Entrega']
-            hora_entrega = (
-                datetime.strptime(hora_entrega_str, '%H:%M:%S').time()
-                if hora_entrega_str else time(7, 0)
-            )
-            hora_entrega_input = st.slider(
-                "Hora de Entrega:",
-                min_value=time(7, 0),
-                max_value=time(20, 0),
-                step=timedelta(hours=1),
-                format="HH:mm:ss",
-                value=hora_entrega,
-                key='Hora_Entrega'
-            )
+            col1,col2 = st.columns([1,2])
+            with col1:
+                # Fecha de Entrega
+                fecha_entrega = st.session_state['orden_info']['Fecha_Entrega']
+                fecha_entrega = pd.to_datetime(fecha_entrega) if fecha_entrega else hoy
+                fecha_entrega_input = st.date_input(
+                    'Fecha de Entrega',
+                    value=fecha_entrega,
+                    format='DD/MM/YYYY',
+                    key='Fecha_Entrega'
+                )
+            with col2:
+                # Hora de Entrega
+                hora_entrega_str = st.session_state['orden_info']['Hora_Entrega']
+                hora_entrega = (
+                    datetime.strptime(hora_entrega_str, '%H:%M:%S').time()
+                    if hora_entrega_str else time(7, 0)
+                )
+                hora_entrega_input = st.slider(
+                    "Hora de Entrega:",
+                    min_value=time(7, 0),
+                    max_value=time(20, 0),
+                    step=timedelta(hours=1),
+                    format="HH:mm:ss",
+                    value=hora_entrega,
+                    key='Hora_Entrega'
+                )
 
             # Notas
             nota_orden = st.session_state['orden_info']['Nota_Orden']
@@ -140,7 +153,7 @@ def ver_ordenes(ordenes, productos, detalles_ordenes):
 
             # Estado
             estado_actual = st.session_state['orden_info']['Estado']
-            estado_input = st.selectbox("Estado", ['Pendiente', 'Completado'], index=['Pendiente', 'Completado'].index(estado_actual) if estado_actual in ['Pendiente', 'Completado'] else 0, key='Estado')
+            estado_input = st.selectbox("Estado", ['Pendiente', 'Completado','Incompleto','No entregado'], index=['Pendiente', 'Completado','Incompleto','No entregado'].index(estado_actual) if estado_actual in ['Pendiente', 'Completado','Incompleto','No entregado'] else 0, key='Estado')
 
             submit_modificar = st.form_submit_button('Guardar Cambios')
 

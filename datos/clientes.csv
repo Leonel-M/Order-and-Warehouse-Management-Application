@@ -13,3 +13,5 @@ Cliente_ID,Nombre,Tipo_Cliente,Ubicacion,Telefono
 12,Cliente 11,Repostero,San Antonio,333 3333 3312
 13,Cliente 12,Repostero,Otro,333 3333 3313
 14,Cliente 13,Empresa no repostera,Otro,333 3333 3314
+15,Cliente 101,Personal,San Cristobal,@instagram
+16,Cliente 200,Empresa no repostera,Rubio,+58 645 7853 988
