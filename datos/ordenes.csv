@@ -1,0 +1,24 @@
+Orden_ID,Cliente,Tipo_Cliente,Fecha_Registro,Fecha_Entrega,Hora_Entrega,Nota_Orden,Ubicacion,Estado
+16,Diego Mendez,Repostero,2025-01-01,2025-01-02,13:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+17,Sofia Torres,Repostero,2025-01-05,2025-01-06,09:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+18,Diego Mendez,Empresa no repostera,2025-01-05,2025-01-06,16:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+19,Miguel Parra,Empresa no repostera,2025-01-05,2025-01-06,13:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+20,Sofia Torres,Repostero,2025-01-05,2025-01-06,19:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Pendiente
+21,Ricardo Diaz,Empresa no repostera,2025-01-05,2025-01-08,13:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+22,Andrea Leon,Empresa no repostera,2025-01-05,2025-01-12,17:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Pendiente
+23,Sebastian Silva,Repostero,2025-01-05,2025-01-11,13:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Otro,Pendiente
+24,Sofia Torres,Repostero,2025-01-05,2025-01-06,11:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+25,Oscar Vega,Repostero,2025-01-06,2025-01-07,16:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+26,Mariana Pena,Repostero,2025-01-06,2025-01-07,16:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Merida,Completado
+27,Mario Castillo,Repostero,2025-01-07,2025-01-08,14:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+28,Sofia Torres,Repostero,2025-01-07,2025-01-08,14:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+29,Pedro Pascal,Repostero,2025-01-07,2025-01-08,12:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+30,Sofia Torres,Repostero,2025-01-07,2025-01-08,13:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+31,Sofia Torres,Repostero,2025-01-08,2025-01-09,13:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+32,Sofia Vergara,Repostero,2025-01-08,2025-01-09,12:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+33,Oscar Vega,Repostero,2025-01-08,2025-01-09,15:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Pendiente
+34,Diego Mendez,Repostero,2025-01-08,2025-01-09,12:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Completado
+35,Paula Osorio,Repostero,2025-01-08,2025-01-09,10:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Merida,Completado
+36,Ricardo Diaz,Empresa no repostera,2025-01-09,2025-01-13,10:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Pendiente
+37,Diego Mendez,Repostero,2025-01-09,2025-01-10,12:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Pendiente
+38,Diego Mendez,Repostero,2025-01-09,2025-01-10,07:00:00,Lorem ipsum dolor sit amet; consectetur adipiscing elit.,Caracas,Pendiente

@@ -1,0 +1,3 @@
+Almacen_ID,Tipo_Registro,SKU,Material,Categoria,Cantidad,Precio_Unitario,Fecha,Proveedor,Usuario,Ubicacion,Notas
+1,Entrada,Silicon-100,Silicon liquido de 100ml,Pegamento,12,0.83,01/01/2025,Libreria Mundial,,al lado de flores,porte cilindrico
+2,Salida,Silicon-100,,,-1,,01/01/2025,,Maria,,Se usó para genericos
